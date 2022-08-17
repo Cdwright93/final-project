@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3Words&SomeStars</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+        <script type="text/javascript"
+            src="https://maps.googleapis.com/maps/api/js?key={yourapikey}&libraries=places"></script>
+            <script>
+            function initialize() {
+                var input = document.getElementById('searchTextField');
+                var autocomplete = new google.maps.places.Autocomplete(input);
+                google.maps.event.addListener(autocomplete, 'place_changed', function () {
+                    var place = autocomplete.getPlace();
+                    document.getElementById('city2').value = place.name;
+                    document.getElementById('cityLat').value = place.geometry.location.lat();
+                    document.getElementById('cityLng').value = place.geometry.location.lng();
+                    console.log(place.geometry.location)
+                });
+            }
+            google.maps.event.addDomListener(window, 'load', initialize);
+        </script>
+</head>
+
+
+<body>
+    <span class="d-block p-2 bg-dark text-white" style="text-align: center; height: 1200px;">
+        <h1>3Words&SomeStars</h1>
+        <p class="text-break">3words&somestars is a tool to commemorate special events. to get
+        started enter the location of the event and the date. the tool will then
+        display the 3words associated with the geographic point and the star
+        chart for the location and date you entered.</p>
+        <div class="container-fluid" style="padding: 20px;">
+            <div class="container" id="search-box">
+                <input id="searchTextField" type="text" size="50" style="border-radius: 10px; margin: 3px;"placeholder="Enter a location" autocomplete="on" runat="server" />
+                <input type="hidden" id="city2" name="city2" />
+                <input type="hidden" id="cityLat" name="cityLat" />
+                <input type="hidden" id="cityLng" name="cityLng" />
+                <br/>
+                <input type="text" id="date-field" placeholder="yyyy/mm/dd" style="padding: 10px;text-align: center; margin:10px;border-radius: 10px;"/>
+                <br/>
+                <span>
+                    <button type="button" style="margin:1px;"class="btn btn-warning"id="searchBtn"onclick="getLocation()">Search</button>
+                </span>
+            </div>
+            <div>
+                <img id="astro-chart" class="astro-chart" src=""></img>
+            </div>
+            <div>
+                <h1 id="3words" class="text-warning bg-dark;fw-bolder"></h1>
+                </span>
+            </div>
+    <script src="main.mjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
+    </div>
+</body>
+</html>
